@@ -6,7 +6,7 @@ using static Core.DataAcces.IEntityRepository;
 
 namespace DataAccess.Abstract
 {
-   public interface IFaultInfoDal : IEntityRepository<FaultInfo>
+   public interface ICategoryDal : IEntityRepository<Category>
     {
     }
 }

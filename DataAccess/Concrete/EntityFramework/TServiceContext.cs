@@ -11,45 +11,55 @@ namespace DataAccess.Concrete.EntityFramework
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Server=DESKTOP-97A2EM3\SQLEXPRESS;Database=TechnicalServiceAppDb;Trusted_Connection=true");
+            optionsBuilder.UseSqlServer(@"Server=DESKTOP-97A2EM3\SQLEXPRESS;Database=TechnicalServiceDb;Trusted_Connection=true");
 
         }
         public DbSet<Customer> Customers { get; set; }
-        public DbSet<User> Users { get; set; }
-        public DbSet<FaultInfo> FaultInfos { get; set; }
-        public DbSet<MadeProces> MadeProcess { get; set; }
-        public DbSet<MaterialUsed> MaterialUseds { get; set; }
-        public DbSet<ProcessControl> ProcessControls { get; set; }
+        public DbSet<User> Users { get; set; }       
+        public DbSet<MadeProces> MadeProcess { get; set; }            
+        public DbSet<FaultState> FaultStates { get; set; }
         public DbSet<ProductInfo> ProductInfos { get; set; }
         public DbSet<StateControl> StateControls { get; set; }
+        public DbSet<ProcesState> ProcesStates { get; set; }
         public DbSet<OperationClaim> OperationClaims { get; set; }
-        public DbSet<UserOperationClaim> UserOperationClaims { get; set; }
-
+        public DbSet<UserOperationClaim> UserOperationClaims { get; set;}
+        public DbSet<Brand> Brands { get; set; }
+        public DbSet<Oem> Oems { get; set; }
+        public DbSet<Category> Categories { get; set; }
+        public DbSet <EndData> EndDatas { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
+        {           
             modelBuilder.Entity<Customer>()
-          .HasKey(p => p.CustomerId);
-
-            modelBuilder.Entity<User>()
         .HasKey(p => p.Id);
-
-            modelBuilder.Entity<FaultInfo>()
-         .HasKey(p => p.ProductId);
-
+            modelBuilder.Entity<User>()
+       .HasKey(p => p.Id);
             modelBuilder.Entity<MadeProces>()
-        .HasKey(p => p.ProductId);
-
-            modelBuilder.Entity<MaterialUsed>()
-        .HasKey(p => p.ProductId);
-
-            modelBuilder.Entity<ProcessControl>()
-        .HasKey(p => p.ProcessId);
-
+       .HasKey(p => p.Id);
+            modelBuilder.Entity<FaultState>()
+       .HasKey(p => p.Id);
+            modelBuilder.Entity<FaultState>()
+       .HasKey(p => p.Id);
             modelBuilder.Entity<ProductInfo>()
-        .HasKey(p => p.ProductId);
-
+       .HasKey(p => p.ProductId);
             modelBuilder.Entity<StateControl>()
-        .HasKey(p => p.StateId);
+       .HasKey(p => p.Id);
+            modelBuilder.Entity<OperationClaim>()
+       .HasKey(p => p.Id);
+            modelBuilder.Entity<UserOperationClaim>()
+       .HasKey(p => p.Id);
+            modelBuilder.Entity<Brand>()
+       .HasKey(p => p.Id);
+            modelBuilder.Entity<Oem>()
+       .HasKey(p => p.Id);
+            modelBuilder.Entity<Category>()
+       .HasKey(p => p.Id);
+            modelBuilder.Entity<EndData>()
+     .HasKey(p => p.Id);
+
+
+
+
+
 
         }
 

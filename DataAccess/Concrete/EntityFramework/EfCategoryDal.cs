@@ -7,7 +7,7 @@ using System.Text;
 
 namespace DataAccess.Concrete.EntityFramework
 {
-    public class EfProcessControlDal: EfEntityRepositoryBase<ProcessControl, TServiceContext>, IProcessControlDal
+    public class EfCategoryDal : EfEntityRepositoryBase<Category, TServiceContext>, ICategoryDal
     {
     }
 }

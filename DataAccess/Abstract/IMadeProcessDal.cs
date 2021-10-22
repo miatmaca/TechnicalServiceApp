@@ -10,6 +10,7 @@ namespace DataAccess.Abstract
 {
     public interface IMadeProcessDal : IEntityRepository<MadeProces>
     {
-        List<MadeProcesDto> GetMadeProcess(int productId);
+        List<MadeProcesDto> GetMadeProcessDto(int productId);
+      
     }
 }

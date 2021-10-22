@@ -14,6 +14,7 @@ namespace WebAPI.Controllers
     public class AuthsController : ControllerBase
     {
         IAuthService _authService;
+     //   IUserService _userService;
 
         public AuthsController(IAuthService authService)
         {
@@ -39,13 +40,15 @@ namespace WebAPI.Controllers
         public ActionResult Register(UserForRegisterDto userForRegisterDto)
         {
             var registerResult = _authService.Register(userForRegisterDto, userForRegisterDto.Password);
-            var result = _authService.CreateAccessToken(registerResult.Data);
-            if (result.Success)
+           
+            if (registerResult.Success)
             {
-                return Ok(result);
+                return Ok(registerResult);
             }
 
-            return BadRequest(result.Message);
+            return BadRequest(registerResult.Message);
         }
+       
+
     }
 }

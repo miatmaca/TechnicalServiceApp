@@ -11,19 +11,18 @@ namespace WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class MaterialUsedsController : ControllerBase
+    public class FaultStatesController : ControllerBase
     {
-        IMaterialUsedService _materialUsedService;
+        IFaultStateService _faultStateService;
 
-        public MaterialUsedsController(IMaterialUsedService materialUsedService)
+        public FaultStatesController(IFaultStateService faultStateService)
         {
-            _materialUsedService = materialUsedService;
+            _faultStateService = faultStateService;
         }
-
         [HttpPost("add")]
-        public IActionResult Add(MaterialUsed materialUsed)
+        public IActionResult Add(FaultState processControl)
         {
-            var result = _materialUsedService.Add(materialUsed);
+            var result = _faultStateService.Add(processControl);
             if (result.Success)
             {
                 return Ok(result);
@@ -32,9 +31,9 @@ namespace WebAPI.Controllers
 
         }
         [HttpPost("update")]
-        public IActionResult Update(MaterialUsed materialUsed)
+        public IActionResult Update(FaultState processControl)
         {
-            var result = _materialUsedService.Update(materialUsed);
+            var result = _faultStateService.Update(processControl);
             if (result.Success)
             {
                 return Ok(result);
@@ -43,9 +42,9 @@ namespace WebAPI.Controllers
 
         }
         [HttpPost("delete")]
-        public IActionResult Delete(MaterialUsed materialUsed)
+        public IActionResult Delete(FaultState processControl)
         {
-            var result = _materialUsedService.Delete(materialUsed);
+            var result = _faultStateService.Delete(processControl);
             if (result.Success)
             {
                 return Ok(result);
@@ -57,7 +56,7 @@ namespace WebAPI.Controllers
         [HttpGet("getall")]
         public IActionResult GetAll()
         {
-            var result = _materialUsedService.GetAll();
+            var result = _faultStateService.GetAll();
             if (result.Success)
             {
                 return Ok(result);
@@ -67,3 +66,4 @@ namespace WebAPI.Controllers
         }
     }
 }
+

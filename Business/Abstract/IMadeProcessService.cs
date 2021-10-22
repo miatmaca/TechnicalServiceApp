@@ -13,7 +13,8 @@ namespace Business.Abstract
         IResult Update(MadeProces madeProces);
         IResult Delete(MadeProces madeProces);
         IDataResult<List<MadeProces>> GetAll();
+       
+        IDataResult<List<MadeProcesDto>> GetMadeProcessDto(int productId);
 
-        IDataResult<List<MadeProcesDto>> GetMadeProces(int productId);
     }
 }

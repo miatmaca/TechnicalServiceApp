@@ -11,18 +11,18 @@ namespace WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ProcessControlsController : ControllerBase
+    public class BrandsController : ControllerBase
     {
-        IProcessControlService _processControlService;
+        IBrandService _brandService;
 
-        public ProcessControlsController(IProcessControlService processControlService)
+        public BrandsController(IBrandService brandService)
         {
-            _processControlService = processControlService;
+            _brandService = brandService;
         }
         [HttpPost("add")]
-        public IActionResult Add(ProcessControl processControl)
-        {
-            var result = _processControlService.Add(processControl);
+        public IActionResult Add(Brand brand)
+        {   
+            var result = _brandService.Add(brand);
             if (result.Success)
             {
                 return Ok(result);
@@ -31,9 +31,13 @@ namespace WebAPI.Controllers
 
         }
         [HttpPost("update")]
-        public IActionResult Update(ProcessControl processControl)
+        public IActionResult Update(Brand brand)
         {
-            var result = _processControlService.Update(processControl);
+            var getbrand = _brandService.GetBrand(brand.BrandName);
+            getbrand.BrandName = brand.BrandName;
+            getbrand.Status = brand.Status;
+            getbrand.ModifiedBy = brand.ModifiedBy;
+            var result = _brandService.Update(getbrand);
             if (result.Success)
             {
                 return Ok(result);
@@ -42,9 +46,9 @@ namespace WebAPI.Controllers
 
         }
         [HttpPost("delete")]
-        public IActionResult Delete(ProcessControl processControl)
+        public IActionResult Delete(Brand brand)
         {
-            var result = _processControlService.Delete(processControl);
+            var result = _brandService.Delete(brand);
             if (result.Success)
             {
                 return Ok(result);
@@ -52,11 +56,21 @@ namespace WebAPI.Controllers
             return BadRequest(result);
 
         }
-
         [HttpGet("getall")]
         public IActionResult GetAll()
         {
-            var result = _processControlService.GetAll();
+            var result = _brandService.GetAll();
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+
+        }
+        [HttpGet("getallbystatusone")]
+        public IActionResult GetAllByStatusOne()
+        {
+            var result = _brandService.GetAllByStatusOne();
             if (result.Success)
             {
                 return Ok(result);

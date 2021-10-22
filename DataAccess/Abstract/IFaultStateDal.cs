@@ -6,7 +6,7 @@ using static Core.DataAcces.IEntityRepository;
 
 namespace DataAccess.Abstract
 {
-   public interface IMaterialUsedDal : IEntityRepository<MaterialUsed>
+   public interface IFaultStateDal:IEntityRepository<FaultState>
     {
     }
 }

@@ -7,7 +7,7 @@ using System.Text;
 
 namespace DataAccess.Concrete.EntityFramework
 {
-    public class EfMaterialUsedDal : EfEntityRepositoryBase<MaterialUsed, TServiceContext>, IMaterialUsedDal
+    public class EfFaultStateDal: EfEntityRepositoryBase<FaultState, TServiceContext>, IFaultStateDal
     {
     }
 }

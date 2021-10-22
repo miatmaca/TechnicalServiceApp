@@ -11,19 +11,19 @@ namespace WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class FaultInfosController : ControllerBase
+    public class OemsController : ControllerBase
     {
-        IFaultInfoService _faultInfoService;
+        IOemService _oemsService;
 
-        public FaultInfosController(IFaultInfoService faultInfoService)
+        public OemsController(IOemService oemsService)
         {
-            _faultInfoService = faultInfoService;
+            _oemsService = oemsService;
         }
 
         [HttpPost("add")]
-        public IActionResult Add(FaultInfo faultInfo)
+        public IActionResult Add(Oem oem)
         {
-            var result = _faultInfoService.Add(faultInfo);
+            var result = _oemsService.Add(oem);
             if (result.Success)
             {
                 return Ok(result);
@@ -32,9 +32,13 @@ namespace WebAPI.Controllers
 
         }
         [HttpPost("update")]
-        public IActionResult Update(FaultInfo faultInfo)
+        public IActionResult Update(Oem oem)
         {
-            var result = _faultInfoService.Update(faultInfo);
+            var getOem= _oemsService.GetOem(oem.OemName);
+            getOem.OemName = oem.OemName;
+            getOem.Status = oem.Status;
+            getOem.ModifiedBy = oem.ModifiedBy;
+            var result = _oemsService.Update(getOem);
             if (result.Success)
             {
                 return Ok(result);
@@ -43,9 +47,9 @@ namespace WebAPI.Controllers
 
         }
         [HttpPost("delete")]
-        public IActionResult Delete(FaultInfo faultInfo)
+        public IActionResult Delete(Oem oem)
         {
-            var result = _faultInfoService.Delete(faultInfo);
+            var result = _oemsService.Delete(oem);
             if (result.Success)
             {
                 return Ok(result);
@@ -53,11 +57,21 @@ namespace WebAPI.Controllers
             return BadRequest(result);
 
         }
-
         [HttpGet("getall")]
         public IActionResult GetAll()
         {
-            var result = _faultInfoService.GetAll();
+            var result = _oemsService.GetAll();
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+
+        }
+        [HttpGet("getallbystatusone")]
+        public IActionResult GetAllByStatusOne()
+        {
+            var result = _oemsService.GetAllByStatusOne();
             if (result.Success)
             {
                 return Ok(result);
@@ -67,3 +81,4 @@ namespace WebAPI.Controllers
         }
     }
 }
+

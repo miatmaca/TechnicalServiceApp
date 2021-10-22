@@ -37,7 +37,7 @@ namespace Business.Concrete
         }
 
         public IDataResult<User> Register(UserForRegisterDto userForRegisterDto, string password)
-        {
+        {   
             var userExist = UserExists(userForRegisterDto.Email);
             if (!userExist.Success)
             {
@@ -54,7 +54,12 @@ namespace Business.Concrete
                     LastName = userForRegisterDto.LastName,
                     PasswordHash = passwordHash,
                     PasswordSalt = passwordSalt,
-                    Status = true
+                    Gsm=userForRegisterDto.Gsm,
+                    CreatedBy=1,
+                    CreatedDate=DateTime.Now,
+                    ModifiedBy=1,
+                    ModifiedDate=DateTime.Now,
+                    Status=1
 
                 };
                 _userService.Add(user);

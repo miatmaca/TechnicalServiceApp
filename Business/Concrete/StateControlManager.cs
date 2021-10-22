@@ -21,13 +21,16 @@ namespace Business.Concrete
         [CacheRemoveAspect("IStateControlService.Get")]
         public IResult Add(StateControl stateControl)
         {
+            stateControl.CreatedDate = DateTime.Now;
             _stateControlDal.Add(stateControl);
             return new SuccessResult(Messages.StateAdded);
         }
         [CacheRemoveAspect("IStateControlService.Get")]
         public IResult Delete(StateControl stateControl)
         {
-            _stateControlDal.Delete(stateControl);
+            stateControl.ModifiedDate = DateTime.Now;
+            stateControl.Status = 0;
+            _stateControlDal.Update(stateControl);
             return new SuccessResult(Messages.StateDelete);
         }
 
@@ -39,6 +42,7 @@ namespace Business.Concrete
         [CacheRemoveAspect("IStateControlService.Get")]
         public IResult Update(StateControl stateControl)
         {
+            stateControl.ModifiedDate = DateTime.Now;
             _stateControlDal.Update(stateControl);
             return new SuccessResult(Messages.StateUpdate);
         }

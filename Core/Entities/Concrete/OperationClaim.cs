@@ -7,7 +7,7 @@ namespace Core.Entities.Entity
 {
    public class OperationClaim:IEntity
     {
-        public int OperationId { get; set; }
+        public int Id { get; set; }
         public string OperationName { get; set; }
     }
 }

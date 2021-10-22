@@ -23,6 +23,7 @@ namespace WebAPI.Controllers
         [HttpPost("add")]
         public IActionResult Add(MadeProces madeProces)
         {
+            madeProces.CreatedDate = DateTime.Now;
             var result = _madeProcessService.Add(madeProces);
             if (result.Success)
             {
@@ -65,10 +66,11 @@ namespace WebAPI.Controllers
             return BadRequest(result);
 
         }
-        [HttpGet("getmadeprocess")]
-        public IActionResult GetMadeProcess(int productId)
+        [HttpGet("getallDto")]
+        public IActionResult GetAllDto(int productId)
         {
-            var result = _madeProcessService.GetMadeProces(productId);
+           
+            var result = _madeProcessService.GetMadeProcessDto(productId);
             if (result.Success)
             {
                 return Ok(result);
@@ -76,5 +78,6 @@ namespace WebAPI.Controllers
             return BadRequest(result);
 
         }
+
     }
 }

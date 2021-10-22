@@ -1,14 +1,13 @@
 ﻿using Core.DataAcces.EntityFrameWork;
 using DataAccess.Abstract;
-using DataAccess.Concrete.EntityFramework;
 using Entities.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace DataAccess.Concrete
+namespace DataAccess.Concrete.EntityFramework
 {
-    public class EfFaultInfoDal : EfEntityRepositoryBase<FaultInfo, TServiceContext>, IFaultInfoDal
+    public class EfOemDal : EfEntityRepositoryBase<Oem, TServiceContext>, IOemDal
     {
     }
 }

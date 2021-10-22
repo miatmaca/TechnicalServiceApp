@@ -6,7 +6,7 @@ using static Core.DataAcces.IEntityRepository;
 
 namespace DataAccess.Abstract
 {
-   public interface IProcessControlDal:IEntityRepository<ProcessControl>
+   public interface IProcesStateDal:IEntityRepository<ProcesState>
     {
     }
 }

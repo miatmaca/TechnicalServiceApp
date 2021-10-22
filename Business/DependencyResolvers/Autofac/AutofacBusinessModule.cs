@@ -26,23 +26,36 @@ namespace Business.DependencyResolvers.Autofac
             builder.RegisterType<UserManager>().As<IUserService>().SingleInstance();
             builder.RegisterType<EfUserDal>().As<IUserDal>().SingleInstance();
 
-            builder.RegisterType<FaultInfoManager>().As<IFaultInfoService>().SingleInstance();
-            builder.RegisterType<EfFaultInfoDal>().As<IFaultInfoDal>().SingleInstance();
+            builder.RegisterType<AuthManager>().As<IAuthService>().SingleInstance();
+            builder.RegisterType<JwtHelper>().As<ITokenHelper>().SingleInstance();
 
             builder.RegisterType<MadeProcessManager>().As<IMadeProcessService>().SingleInstance();
             builder.RegisterType<EfMadeProcessDal>().As<IMadeProcessDal>().SingleInstance();
+           
 
-            builder.RegisterType<MaterialUsedManager>().As<IMaterialUsedService>().SingleInstance();
-            builder.RegisterType<EfMaterialUsedDal>().As<IMaterialUsedDal>().SingleInstance();
-
-            builder.RegisterType<ProcessControlManager>().As<IProcessControlService>().SingleInstance();
-            builder.RegisterType<EfProcessControlDal>().As<IProcessControlDal>().SingleInstance();
+            builder.RegisterType<FaultStateManager>().As<IFaultStateService>().SingleInstance();
+            builder.RegisterType<EfFaultStateDal>().As<IFaultStateDal>().SingleInstance();
 
             builder.RegisterType<ProductInfoManager>().As<IProductInfoService>().SingleInstance();
             builder.RegisterType<EfProductInfoDal>().As<IProductInfoDal>().SingleInstance();
 
             builder.RegisterType<StateControlManager>().As<IStateControlService>().SingleInstance();
             builder.RegisterType<EfStateControlDal>().As<IStateControlDal>().SingleInstance();
+
+            builder.RegisterType<BrandManager>().As<IBrandService>().SingleInstance();
+            builder.RegisterType<EfBrandDal>().As<IBrandDal>().SingleInstance();
+
+            builder.RegisterType<CategoryManager>().As<ICategoryService>().SingleInstance();
+            builder.RegisterType<EfCategoryDal>().As<ICategoryDal>().SingleInstance();
+
+            builder.RegisterType<ProcesStateManager>().As<IProcesStateService>().SingleInstance();
+            builder.RegisterType<EfProcesStateDal>().As<IProcesStateDal>().SingleInstance();
+
+            builder.RegisterType<OemManager>().As<IOemService>().SingleInstance();
+            builder.RegisterType<EfOemDal>().As<IOemDal>().SingleInstance();
+
+            builder.RegisterType<EndDataManager>().As<IEndDataService>().SingleInstance();
+            builder.RegisterType<EfEndDataDal>().As<IEndDataDal>().SingleInstance();
 
             var assembly = System.Reflection.Assembly.GetExecutingAssembly();
 

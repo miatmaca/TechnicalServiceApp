@@ -1,13 +1,13 @@
 ﻿using Core.DataAccess.Entities;
+using Core.Entities;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace Entities.Concrete
 {
-   public class StateControl:IEntity
+   public class StateControl: EntitiesBase
     {
-        public int StateId { get; set; }
-        public string StateName { get; set; }
+     public string StateName { get; set; }
     }
 }
