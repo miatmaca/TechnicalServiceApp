@@ -14,5 +14,6 @@ namespace Business.Abstract
         IDataResult<User> Login(UserForLoginDto userForLoginDto);
         IDataResult<AccessToken> CreateAccessToken(User user);
         IResult UserExists(string email);
+        IResult ChangePassword(ChangePassword updateUser);
     }
 }

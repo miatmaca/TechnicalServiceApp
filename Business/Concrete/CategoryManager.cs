@@ -27,7 +27,8 @@ namespace Business.Concrete
         {
             var result = CategoryNameControl(category);
             if (result.Success)
-            {
+            {               
+                category.ModifiedDate = DateTime.Now;
                 category.CreatedDate = DateTime.Now; //Oluşturulduğu Tarih otomatik burdan 
                _categoryDal.Add(category);
                 return new SuccessResult(Messages.Added);

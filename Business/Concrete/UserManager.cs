@@ -25,8 +25,9 @@ namespace Business.Concrete
      //   [SecuredOperation("Boss")]
         public IResult Add(User user)
         {
-
+            user.Status = 1;
             user.CreatedDate = DateTime.Now;
+            user.ModifiedDate = DateTime.Now;
             _userDal.Add(user);
             return new SuccessResult(Messages.EmployeeAdded);
         }
@@ -86,6 +87,14 @@ namespace Business.Concrete
         public User GetByUserId(int userId)
         {
             return (_userDal.Get(u=>u.Id==userId));
+        }
+
+        public IResult PasswordUpdate(User user)
+        {
+            user.ModifiedDate = DateTime.Now;
+           
+            _userDal.Update(user);
+            return new SuccessResult(Messages.PasswordChanged);
         }
     }
 }

@@ -10,7 +10,7 @@ namespace Entities.Concrete
     {
         public int ProductId { get; set; }
         public string BrandName { get; set; }
-        public string OemName { get; set; }
+        public int OemName { get; set; }
         public string CategoryName { get; set; }
         public string SerialNo { get; set; }
         public string FaultName { get; set; }

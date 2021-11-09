@@ -85,7 +85,7 @@ namespace WebAPI.Controllers
             var result = _categoryService.GetAllOemId(oemId);
             if (result.Success)
             {
-                return Ok(result);
+                return Ok(result.Data);
             }
             return BadRequest(result);
         }

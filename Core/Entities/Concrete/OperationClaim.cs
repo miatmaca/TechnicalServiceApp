@@ -5,9 +5,9 @@ using System.Text;
 
 namespace Core.Entities.Entity
 {
-   public class OperationClaim:IEntity
+   public class OperationClaim:EntitiesBase
     {
-        public int Id { get; set; }
+        
         public string OperationName { get; set; }
     }
 }

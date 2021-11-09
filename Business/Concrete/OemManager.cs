@@ -24,7 +24,9 @@ namespace Business.Concrete
             var result = OemNameControl(oem);
             if (result.Success)
             {
+                oem.Status = 1;
                 oem.CreatedDate = DateTime.Now; //Oluşturulduğu Tarih otomatik burdan 
+                oem.ModifiedDate = DateTime.Now;
                 _oemDal.Add(oem);
                 return new SuccessResult(Messages.Added);
             }

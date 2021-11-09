@@ -1,5 +1,7 @@
 ﻿using Business.Abstract;
 using Business.Constans;
+using Business.Validation.FluentValidation;
+using Core.Asbect.Autofac.Validation;
 using Core.Utilities;
 using Core.Utilities.Security.Hashing;
 using Core.Utilities.Security.JWT;
@@ -55,11 +57,11 @@ namespace Business.Concrete
                     PasswordHash = passwordHash,
                     PasswordSalt = passwordSalt,
                     Gsm=userForRegisterDto.Gsm,
-                    CreatedBy=1,
+                    CreatedBy=userForRegisterDto.CreatedBy,
                     CreatedDate=DateTime.Now,
-                    ModifiedBy=1,
+                    ModifiedBy=userForRegisterDto.ModifiedBy,
                     ModifiedDate=DateTime.Now,
-                    Status=1
+                    Status=userForRegisterDto.Status
 
                 };
                 _userService.Add(user);
@@ -82,6 +84,29 @@ namespace Business.Concrete
             var claims = _userService.GetClaims(user);
             var accessToken = _tokenHelper.CreateToken(user, claims);
             return new SuccessDataResult<AccessToken>(accessToken, Messages.AccessTokenCreated);
+        }
+
+        [ValidationAspect(typeof(ChangePasswordValidator))]
+       public IResult ChangePassword(ChangePassword updateUser)
+        {
+            UserForLoginDto checkedUser = new UserForLoginDto
+            {
+                Email = updateUser.Email,
+                Password = updateUser.OldPassword
+                
+            };
+            var loginResult = Login(checkedUser);
+            if (loginResult.Success)
+            {
+                var user = loginResult.Data;
+                byte[] passwordHash,passwordSalt;
+                HashingHelper.CreatePasswordHash(updateUser.NewPassword, out passwordHash, out passwordSalt);
+                user.PasswordHash = passwordHash;
+                user.PasswordSalt = passwordSalt;
+                _userService.PasswordUpdate(user);
+                return new SuccessResult(Messages.PasswordChanged);
+            }
+            return new ErrorResult(loginResult.Message);
         }
     }
 }

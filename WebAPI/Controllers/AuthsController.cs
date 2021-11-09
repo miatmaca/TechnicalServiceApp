@@ -48,7 +48,19 @@ namespace WebAPI.Controllers
 
             return BadRequest(registerResult.Message);
         }
-       
+        [HttpPost("changedpassword")]
+        public ActionResult ChangedPassword(ChangePassword changePassword)
+        {
+            var result = _authService.ChangePassword(changePassword);
+
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+
+            return BadRequest(result.Message);
+        }
+
 
     }
 }

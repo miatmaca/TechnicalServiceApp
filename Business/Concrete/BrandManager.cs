@@ -13,6 +13,7 @@ namespace Business.Concrete
 {
     public class BrandManager : IBrandService
     {
+       
         IBrandDal _brandDal;
 
         public BrandManager(IBrandDal brandDal)
@@ -26,8 +27,12 @@ namespace Business.Concrete
         {
             var result = BrandNameControl(brand);
             if (result.Success)
+
             {
+                brand.Status = 1;
                 brand.CreatedDate = DateTime.Now; //Oluşturulduğu Tarih otomatik burdan 
+                brand.ModifiedDate = DateTime.Now;
+
                 _brandDal.Add(brand);
                 return new SuccessResult(Messages.BrandAdded);
             }
@@ -39,7 +44,7 @@ namespace Business.Concrete
         // [SecuredOperation("Boss")]
         public IResult Delete(Brand brand)
         {
-            brand.ModifiedBy = 1;//Sistemden Gelicek
+           
             brand.ModifiedDate = DateTime.Now;//Değiştirildiği Tarih Otomatik Burdan
             brand.Status = 0;
             _brandDal.Update(brand);

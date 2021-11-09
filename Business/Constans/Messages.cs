@@ -15,11 +15,12 @@ namespace Business.Constans
         public static string Deleted = "Silindi";
         public static string Update = "Güncellendi";
 
+        public static string PasswordChanged = "Parola Güncellendi";
         public static string NotFound = "Öğe Bulunamadı";
         public static string UserNotFound = "Kullanıcı Bulunamadı";
         public static string UserRegistered = "Kullanıcı Kaydedildi";
         public static string PasswordError = "Parola Hatası";
-        public static string SuccessfulLogin = "Kayıt Yapıldı";
+        public static string SuccessfulLogin = " Giriş Yapıldı";
         public static string UserAlreadyExists = "Kayıtlı Kullanıcı";
         public static string AccessTokenCreated = "Giriş Yapıldı";
         public static string AuthorizationDenied = "Yetkiniz Yok";
@@ -36,10 +37,10 @@ namespace Business.Constans
         public static string InsBalance = "Yetersiz Bakiye";
         public static string Succes = "Ödeme Gerçekleştirildi";
 
-        public static string useroperationclaimAdded = "Operasyon Eklendi";
-        public static string useroperationclaimDelete = "Operasyon Silindi";
-        public static string useroperationclaimUpdate = "Operasyon Güncellendi";
-        public static string useroperationclaimListed = "Operasyon Listelendi";
+        public static string operationclaimAdded = "Operasyon Eklendi";
+        public static string operationclaimDelete = "Operasyon Silindi";
+        public static string operationclaimUpdate = "Operasyon Güncellendi";
+        public static string operationclaimListed = "Operasyon Listelendi";
 
 
         public static string CustomerAdded = "Müşteri Başarıyla Eklendi";

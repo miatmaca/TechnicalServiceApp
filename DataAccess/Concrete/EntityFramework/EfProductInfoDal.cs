@@ -31,11 +31,14 @@ namespace DataAccess.Concrete
 
                              join stateControl in context.StateControls
                              on productInfo.StateControl equals stateControl.Id
+
+                             join oem in context.Oems
+                           on productInfo.OemName equals oem.Id
                              select new ProductInfoDto
                              {
                                  ProductId = productInfo.ProductId,
                                  brandName = productInfo.BrandName,
-                                 OemName = productInfo.OemName,
+                                 OemName = oem.OemName,
                                  Category = productInfo.CategoryName,
                                  SerialNo = productInfo.SerialNo,
                                  FaultName = productInfo.FaultName,
@@ -66,11 +69,15 @@ namespace DataAccess.Concrete
 
                              join stateControl in context.StateControls
                              on productInfo.StateControl equals stateControl.Id
+
+                             join oem in context.Oems
+                             on productInfo.OemName equals oem.Id
+
                              select new ProductInfoDto
                              {
                                  ProductId = productInfo.ProductId,
-                                 brandName = productInfo.BrandName,
-                                 OemName = productInfo.OemName,
+                                 brandName =productInfo.BrandName,
+                                 OemName = oem.OemName,
                                  Category = productInfo.CategoryName,
                                  SerialNo = productInfo.SerialNo,
                                  FaultName = productInfo.FaultName,

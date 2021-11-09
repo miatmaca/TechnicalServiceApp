@@ -57,11 +57,11 @@ namespace WebAPI.Controllers
             product.Status = 0;
             product.ModifiedBy = 1;
             var result = _productInfoService.Update(product);
-            if (product!=null)
+            if (result.Success)
             {
-                return Ok(product);
+                return Ok(result);
             }
-            return BadRequest(product);
+            return BadRequest(result);
 
         }
         [HttpPost("delete")]

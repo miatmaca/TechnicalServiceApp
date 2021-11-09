@@ -34,6 +34,8 @@ namespace DataAccess.Concrete.EntityFramework
                              join customer in context.Customers
                              on productInfo.CustomerId equals customer.Id
 
+                             join oem in context.Oems
+                             on productInfo.OemName equals oem.Id
 
                              where madeProces.ProductId == productId
                              select new MadeProcesDto
@@ -49,7 +51,7 @@ namespace DataAccess.Concrete.EntityFramework
                                  StateNote = madeProces.StateNote,
                                  BrandName = productInfo.BrandName,
                                  CategoryName = productInfo.CategoryName,
-                                 OemName = productInfo.OemName,
+                                 OemName = oem.OemName,
                                  SerialNo = productInfo.SerialNo,
                                  StateControl=stateControl.StateName,
                                  Customer=customer.FirstName,

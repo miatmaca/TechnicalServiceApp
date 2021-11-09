@@ -30,12 +30,14 @@ namespace DataAccess.Concrete.EntityFramework
 
                              join processControl in context.ProcesStates
                              on madeProcess.MadeProcess equals processControl.Id
+                             join oem in context.Oems
+                           on productInfo.OemName equals oem.Id
 
                              select new CommonDto
                              {  //Ürün Bilgileri
                                  ProductId = productInfo.ProductId,
                                  BrandName = productInfo.BrandName,
-                                 OemName = productInfo.OemName,
+                                 OemName = oem.OemName,
                                  CategoryName = productInfo.CategoryName,
                                  SerialNo = productInfo.SerialNo,
                                  FaultName = productInfo.FaultName,
